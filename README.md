@@ -37,47 +37,139 @@ Open ports are ports that are actively being used by applications for communicat
 
 ## Basic Networking Tools
 
-### Netstat
-`netstat` (network statistics) is a command-line tool that provides information about network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
+### Hostname
+Hostname command is used to view the hostname of the machine and to set the hostname.
 
 - **Common Commands:**
-  - `netstat -a`: Displays all active connections and listening ports.
-  - `netstat -t`: Shows TCP connections.
-  - `netstat -u`: Shows UDP connections.
+  - `hostname`: View the hostname of the machine.
+  - `sudo hostname temp.com`: Set a new hostname for the machine.
+
+### Host
+Host command is for the reverse lookup of IP or a DNS name.
+
+- **Common Commands:**
+  - `host 8.8.8.8`: Find the DNS attached with an IP.
+  - `host devopscube.com`: Find the IP address associated with the domain name.
+
+### Ping
+The ping networking utility is used to check if the remote server is reachable or not.
+
+- **Common Commands:**
+  - `ping devopscube.com`: Ping a domain.
+  - `ping 8.8.8.8`: Ping an IP address.
+  - `ping -c 1 devopscube.com`: Limit the ping output.
+
+### Curl
+Curl utility is primarily used to transfer data from or to a server.
+
+- **Common Commands:**
+  - `curl -v telnet://192.168.33.10:22`: Check connectivity on port 22 using telnet.
+  - `curl ftp://ftptest.net`: Check FTP connectivity.
+  - `curl http://devopscube.com -I`: Troubleshoot web server connectivity.
+
+### Wget
+The wget command is primarily used to fetch web pages.
+
+- **Common Commands:**
+  - `wget -e use_proxy=yes http_proxy=<proxy_host:port> http://externalsite.com`: Troubleshoot proxy server connections.
+  - `wget www.google.com`: Check if a website is up by fetching the files.
+
+### Ip (Ifconfig)
+ip command is used to display and manipulate routes and network interfaces. ip command is the newer version of ifconfig.
+
+- **Common Commands:**
+  - `ip addr`: Display network devices and configuration.
+  - `ip a | grep eth0  | grep "inet" | awk -F" " '{print $2}'`: Get the IP address of eth0 network interface.
+  - `ip a show eth0`: Get details of a specific interface.
+  - `ip route`: List the routing tables.
+
+### Arp
+ARP (Address Resolution Protocol) shows the cache table of local networks’ IP addresses and MAC addresses that the system interacted with.
+
+- **Common Commands:**
+  - `arp`: Display the ARP cache table.
+
+### Ss (Netstat)
+The ss command is a replacement for netstat. You can get more information than netstat command.
+
+- **Common Commands:**
+  - `ss`: List all the TCP, UDP, and Unix socket connections.
+  - `ss -ta`: Filter out TCP connections.
+  - `ss -ua`: Filter out UDP connections.
+  - `ss -xa`: Filter out Unix socket details.
+  - `ss -lt`: List all listening ports.
+  - `ss -t -r state established`: List all established ports.
+  - `ss -t -r state listening`: List all sockets in listening state.
 
 ### Traceroute
-`traceroute` is a network diagnostic tool used to track the path packets take from the source to the destination.
+traceroute is a network troubleshooting utility. Using traceroute you can find the number of hops required for a particular packet to reach the destination.
 
-- **Common Command:**
-  - `traceroute <destination>`: Traces the route to the specified destination.
+- **Common Commands:**
+  - `traceroute google.com`: Trace the route to google.com.
 
-### Tracert
-`tracert` is the Windows equivalent of `traceroute`.
+### Mtr
+The mtr utility is a network diagnostic tool to troubleshoot the network bottlenecks. It combines the functionality of both ping and traceroute.
 
-- **Common Command:**
-  - `tracert <destination>`: Traces the route to the specified destination.
+- **Common Commands:**
+  - `mtr google.com`: Shows the traceroute output in real-time.
+  - `mtr -n --report google.com`: Generate a report.
+
+### Dig
+If you have any task related to DNS lookup, you can use “dig” command to query the DNS name servers.
+
+- **Common Commands:**
+  - `dig twiter.com ANY`: Get all DNS records and TTL information.
+  - `dig google.com ANY +short`: Get the output without verbose.
+  - `dig www.google.com A +short`: Get the A record for the particular domain name.
+  - `dig google.com CNAME +short`: Get the CNAME record.
+  - `dig google.com MX +short`: Get the MX record.
+  - `dig google.com TXT +short`: Get the TXT record.
+  - `dig google.com NS +short`: Get the NS record.
+  - `dig -x 8.8.8.8`: Perform a reverse DNS lookup.
 
 ### Nslookup
-`nslookup` is a network administration command-line tool used for querying the Domain Name System (DNS) to obtain domain name or IP address mapping.
+Nslookup (Name Server Lookup) utility is used to check the DNS entries.
 
 - **Common Commands:**
-  - `nslookup <domain>`: Retrieves the IP address of the specified domain.
-  - `nslookup <IP>`: Retrieves the domain name associated with the specified IP address.
+  - `nslookup google.com`: Check the DNS records of a domain.
+  - `nslookup 8.8.8.8`: Do a reverse lookup with the IP address.
+  - `nslookup -type=any google.com`: Get all the DNS records of a domain name.
 
-### Ifconfig
-`ifconfig` (interface configuration) is used to configure network interfaces in Unix and Linux systems.
+### Nc (Netcat)
+The nc (netcat) command is known as the swiss army of networking commands.
 
 - **Common Commands:**
-  - `ifconfig`: Displays all active interfaces.
-  - `ifconfig <interface> up/down`: Activates or deactivates a network interface.
+  - `nc -v -n 192.168.33.10 22`: Check the connectivity of a service running on a specific port.
+
+### Telnet
+The telnet command is used to troubleshoot the TCP connections on a port.
+
+- **Common Commands:**
+  - `telnet 10.4.5.5 22`: Check port connectivity using telnet.
 
 ### Route
-`route` is used to view and manipulate the IP routing table.
+The “route” command is used to get the details of the route table for your system and to manipulate it.
 
 - **Common Commands:**
-  - `route`: Displays the current routing table.
-  - `route add <destination> <gateway>`: Adds a route to the routing table.
-  - `route del <destination>`: Removes a route from the routing table.
+  - `route`: List all routes.
+  - `route -n`: Get the full output in numerical form.
+
+### Tcpdump
+The tcpdump command is primarily used for troubleshooting network traffic.
+
+- **Common Commands:**
+  - `sudo tcpdump --list-interfaces`List all network interfaces.
+  `sudo tcpdump --list-interfaces`
+  - `sudo tcpdump -i eth0`: Capture packets on a specific interface.
+  - `sudo tcpdump -i eth0 -c 10`: Limit the packet capturing.
+  - `sudo tcpdump -i any`: Capture packets on all the interfaces.
+
+### Lsof
+lsof is a command that would used in day to day linux troubleshooting.
+
+- **Common Commands:**
+  - `lsof`: List all open files.
+  - `lsof -i :8080`: Find the process ID associated with a port.
 
 ---
 
@@ -88,15 +180,12 @@ Open ports are ports that are actively being used by applications for communicat
 # Display all active connections and listening ports
 netstat -a
 
-```
 # Display only TCP connections
-```
 netstat -t
-```
+
 # Display only UDP connections
-```
 netstat -u
-```
+
 
 # Trace the route to www.example.com
 ```
