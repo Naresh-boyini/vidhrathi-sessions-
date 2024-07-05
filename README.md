@@ -37,6 +37,41 @@ Open ports are ports that are actively being used by applications for communicat
 
 ## Basic Networking Tools
 
+- **Hostname**: View or set the hostname of the machine.
+   
+- **Host**: Perform DNS lookups, reverse lookups of IP addresses.
+   
+- **Ping**: Check if a remote server is reachable.
+   
+- **Curl**: Transfer data to or from a server.
+   
+- **Wget**: Fetch web pages.
+   
+- **Ip (Ifconfig)**: Display and manipulate network interfaces and routes.
+   
+- **Arp**: Display or manipulate the ARP cache.
+   
+- **Ss (Netstat)**: List TCP, UDP, and Unix socket connections.
+   
+- **Traceroute**: Trace the route packets take to a network host.
+   
+- **Mtr**: Network diagnostic tool combining ping and traceroute.
+    
+- **Dig**: DNS lookup and query tool.
+    
+- **Nslookup**: Query DNS servers.
+    
+- **Nc (Netcat)**: Swiss army knife for TCP/IP networking.
+    
+- **Telnet**: Check TCP port connectivity.
+    
+- **Route**: View and manipulate the IP routing table.
+    
+- **Tcpdump**: Capture and analyze network traffic.
+    
+- **Lsof**: List open files and processes.
+
+
 ### Hostname
 Hostname command is used to view the hostname of the machine and to set the hostname.
 
